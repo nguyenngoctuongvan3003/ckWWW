@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thêm sv</title>
+</head>
+<body>
+	<div align="center">
+		<form method="post" role="form" th:action="@{/sinhvien/add}"
+			th:object="${sinhVien}">
+			<table border="1" width="90%">
+				<tr>
+					<td>tenSV</td>
+					<td><input type="text" th:field="*{tenSV}" />
+						<p th:errors="*{tenSV}" th:if="${#fields.hasErrors('tenSV')}"></p></td>
+				</tr>
+				<tr>
+					<td>email</td>
+					<td><input type="text" th:field="*{email}" />
+						<p th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></p></td>
+				</tr>
+				<tr>
+
+					<td>ngaySinh</td>
+					<td><input type="date" th:field="*{ngaySinh}" />
+						<p th:errors="*{ngaySinh}"
+							th:if="${#fields.hasErrors('ngaySinh')}"></p></td>
+				</tr>
+				<tr>
+					<td>gioiTinh</td>
+					<td><select th:field="*{gioiTinh}">
+							<option value="Nữ">Nữ</option>
+							<option value="Nam">Nam</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>dienThoai</td>
+					<td><input type="text" th:field="*{dienThoai}" />
+					<p th:errors="*{dienThoai}"
+							th:if="${#fields.hasErrors('dienThoai')}"></p></td>
+				</tr>
+				<tr>
+					<td>lopHoc</td>
+					<td><select th:field="*{lopHoc.maLop}">
+							<option th:each="lop:${dsLopHoc}" th:value="${lop.maLop}" th:text="${lop.tenLop}"></option>
+						</select></td>
+				</tr>
+				<tr>
+					<td><button type="submit">Thêm</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

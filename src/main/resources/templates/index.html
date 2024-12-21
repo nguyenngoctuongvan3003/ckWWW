@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Trang chủ</title>
+</head>
+<body>
+	<div align="center">
+		<table border="1" width="90%">
+			<tr>
+				<td><form method="get" th:action="@{/sinhvien/filter}">
+						<select name="maLop" onchange="this.form.submit()">
+							<option value="">Chọn lớp học</option>
+							<option th:each="lop:${dsLopHoc}" th:value="${lop.maLop}" th:text="${lop.tenLop}"></option>
+						</select>
+					</form></td>
+			</tr>
+			<tr>
+				<td><form method="get" th:action="@{/sinhvien/search}">
+						<input th:value="${param.keyword}" name="keyword" type="text" placeholder="search"/>
+						<button type="submit">search</button>
+					</form></td>
+			</tr>
+			<tr>
+				<td><a th:href="@{/sinhvien/add}">Add</a></td>
+			</tr>
+			<tr>
+				<td>tenSV</td>
+				<td>email</td>
+				<td>ngaySinh</td>
+				<td>gioiTinh</td>
+				<td>dienThoai</td>
+				<td>lopHoc</td>
+			</tr>
+
+			<tr th:each="sinhVien:${dsSinhVien}">
+				<td th:text="${sinhVien.tenSV}"></td>
+				<td th:text="${sinhVien.email}"></td>
+				<td th:text="${sinhVien.ngaySinh}"></td>
+				<td th:text="${sinhVien.gioiTinh}"></td>
+				<td th:text="${sinhVien.dienThoai}"></td>
+				<td th:text="${sinhVien.lopHoc.tenLop}"></td>
+				<td><a th:href="@{/sinhvien/edit/{maSV}(maSV=${sinhVien.maSV})}">Sửa</a></td>
+				<td><a th:href="@{/sinhvien/delete/{maSV}(maSV=${sinhVien.maSV})}">Xóa</a></td>
+			</tr>
+
+
+		</table>
+	</div>
+</body>
+</html>
